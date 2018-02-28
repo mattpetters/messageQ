@@ -1,4 +1,4 @@
-# MessageQueue for Mac
+# MessageQ for Mac
 
 Have you ever wanted to send a message to somebody, but realized it is 3am and you will seem like a total weirdo if you went ahead and sent it?
 
