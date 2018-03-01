@@ -1,0 +1,29 @@
+.ComposeMessageForm {
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.ComposeMessageForm-label {
+    text-transform: uppercase;
+    font-size: 10px;
+    color: gray;
+}
+
+.ComposeMessageForm-inputtext {
+    font-size: 20px;
+
+}
+
+button {
+    border: solid 3px #07a0e0;
+    color: #07a0e0;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    
+}

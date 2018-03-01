@@ -1,0 +1,27 @@
+.MessageList {
+    
+}
+
+.MessageList-title {
+    text-transform: uppercase;
+    color: white;
+}
+
+.MessageList-list {
+    list-style: none;
+}
+
+.MessageList-item {
+    font-style: bold;
+    color: white;
+}
+
+.MessageList-phone {
+    margin: 10px;
+}
+.MessageList-message {
+    margin: 10px;
+}
+.MessageList-time {
+    margin: 10px;
+}

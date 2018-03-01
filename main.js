@@ -9,7 +9,6 @@ dotenv.config();
 //TODO: Have it live in the taskbar
 //TODO: Integrate contacts
 //TODO: Allow for canceling jobs
-//TODO: Allow for schedule job from UI
 
 // a lil jobs queue
 var jobs = {};
@@ -26,11 +25,17 @@ function sendMessage(buddyPhone, message) {
     });
 }
 
+function jobCompleted(jobId){
+    windo.webContents.send('job-completed', jobId);
+}
+
 function scheduleMessage(jobId, whenToSend, phone, messageToSend){
     var job = schedule.scheduleJob(whenToSend, () => { 
         sendMessage(phone, messageToSend)
+        jobCompleted(jobId);
         delete jobs[jobId];
     });
+    console.log("Job scheduled on back", jobId);
     jobs[jobId] = job;
 }
 
@@ -41,7 +46,16 @@ function cancelMessage(jobId){
 
 function createWindow() {
     console.log("Window created on backend!!");
-    windo = new BrowserWindow({width: 800, height: 600});
+    const windowPrefs = {
+        minWidth: 800,
+        minHeight: 600,
+        titleBarStyle: 'hidden',
+        movable: true,
+    }
+    windo = new BrowserWindow(windowPrefs);
+
+    windo.setBackgroundColor("#89bdd3");
+    windo.setMenu(null);
 
     const startUrl = process.env.ELECTRON_START_URL || process.env.DEV_URL || url.format({
             pathname: path.join(__dirname, '/../build/index.html'),
@@ -70,7 +84,7 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
 
-    if (win === null) {
+    if (windo === null) {
         createWindow();
     }
 });
