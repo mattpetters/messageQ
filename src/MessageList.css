@@ -16,6 +16,10 @@
     color: white;
 }
 
+.completed {
+    text-decoration: line-through;
+}
+
 .MessageList-phone {
     margin: 10px;
 }

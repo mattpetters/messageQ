@@ -13,7 +13,8 @@ A Messages.app that is authenticated with your iCloud information, ideally set u
 TBD
 
 # TODO
-- [ ] Update UI on completed jobs 
+- [x] Update UI on completed jobs 
 - [ ] Allow job cancel from UI
 - [ ] Show relative times, allow scheduling relatively
 - [ ] UI Improvement
+- [ ] Integrate with Apple Contacts

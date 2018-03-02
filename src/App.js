@@ -16,6 +16,19 @@ class App extends Component {
         this.handleDateChange = this.handleDateChange.bind(this);
         ipc.on('job-completed', (event, arg) => {
             console.log(arg, " completed!");
+            // find message with id and remove/mark as completed
+            var jobIndex = this.state.messages.findIndex( (el) => el.jobId === arg);
+            if (jobIndex === -1){
+                console.log("job not found");
+            } else {
+                this.setState((prevState, props) => {
+                    var prevMessages = prevState.messages;
+                    prevMessages[jobIndex].completed = true;
+                    return {
+                        messages: prevMessages
+                    }
+                }); 
+            }
         });
 
     }
