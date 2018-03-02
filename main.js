@@ -5,6 +5,8 @@ const osascript = require('node-osascript');
 const schedule = require('node-schedule');
 const moment = require('moment');
 const dotenv = require('dotenv');
+const objc = require('nodobjc');
+
 dotenv.config();
 //TODO: Have it live in the taskbar
 //TODO: Integrate contacts
@@ -24,6 +26,22 @@ function sendMessage(buddyPhone, message) {
         console.log(result, raw)
     });
 }
+
+function getContacts(){
+    objc.framework('AddressBook');
+    var addressBook = objc.ABAddressBook('addressBook');
+    var people = addressBook('people');
+    var count = people('count');
+    for (var i=0; i<count; i++){
+        var person = people('objectAtIndex', i);
+        var first = person('valueForProperty', objc.kABFirstNameProperty);
+        var last = person('valueForProperty', objc.kABLastNameProperty);
+        var phones = person('valueForProperty', objc.kABPhoneProperty);
+        console.log(i, first, last, phones);
+    }
+}
+
+getContacts();
 
 function jobCompleted(jobId){
     windo.webContents.send('job-completed', jobId);
